@@ -29,11 +29,12 @@ class ListaAlumnos:
 		self.alumnos = miCursor.fetchall()
 
 	def actualizaLista(self):
-		# Cargo el conenido actualizado de la tabla a la lista "alumnos"
+		# Cargo el conenido actualizado de la lista a la lista "alumnos"
 		miCursor.execute("SELECT * FROM ALUMNOS")
 		self.alumnos = miCursor.fetchall()
 
 	def agregaPersonas(self, nombre, apellido, cedula):
+		# Agrega personas y me actualiza la lista del objeto de una vez
 		try:
 			miCursor.execute(f"INSERT INTO ALUMNOS VALUES (NULL,?,?,?)", (nombre, apellido, cedula))
 		except:
@@ -42,18 +43,20 @@ class ListaAlumnos:
 		self.actualizaLista()
 
 	def eliminaPersonas(self, cedula):
+		# Elimina personas y me actualiza la lista del objeto de una vez
 		print("DELETE FROM ALUMNOS WHERE CEDULA=" + str(cedula))
 		miCursor.execute(f"DELETE FROM ALUMNOS WHERE CEDULA=" + str(cedula))
 		miConexion.commit()
 		self.actualizaLista()
 
 	def modificaPersonas(self, cedula, campo, nuevoValor):
-		miCursor.execute(f"UPDATE ALUMNOS SET {campo}=? WHERE CEDULA=?",(nuevoValor,cedula))
-		# miConexion.commit()
+		# Modifica personas y me actualiza la tabla del objeto de una vez
+		miCursor.execute(f"UPDATE ALUMNOS SET {campo}=? WHERE CEDULA=?", (nuevoValor, cedula))
+		miConexion.commit()
 		self.actualizaLista()
 
 	def dameTabla(self):
-
+		# Me retorna el objeto lista
 		return self.alumnos
 
 
