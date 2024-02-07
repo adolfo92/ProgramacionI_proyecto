@@ -28,21 +28,32 @@ class ListaAlumnos:
 		miCursor.execute("SELECT * FROM ALUMNOS")
 		self.alumnos = miCursor.fetchall()
 
+	def actualizaLista(self):
+		miCursor.execute("SELECT * FROM ALUMNOS")
+		self.alumnos = miCursor.fetchall()
 
+	def agregaPersonas(self, nombre, apellido, cedula):
+		miCursor.execute("INSERT INTO ALUMNOS VALUES (NULL, nombre, apellido, cedula)")
 
+		self.actualizaLista()
 
-	def agregaPersonas():
-		return
+	def eliminaPersonas(self, cedula):
+		miCursor.execute("DELETE FROM ALUMNOS WHERE CEDULA=" + cedula)
 
-	def eliminaPersonas():
-		return
+		self.actualizaLista()
 
-	def modificaPersonas():
-		return
+	def modificaPersonas(self, cedula, campo, nuevoValor):
+		miCursor.execute("UPDATE ALUMNOS SET" + campo + "=" + nuevoValor)
 
-	def muestraTabla():
-		return
+		self.actualizaLista()
+
+	def dameTabla(self):
+
+		return self.alumnos
+
 
 miNuevaLista = ListaAlumnos()
+
+print(miNuevaLista.alumnos)
 
 miConexion.close()
