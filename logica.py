@@ -29,22 +29,27 @@ class ListaAlumnos:
 		self.alumnos = miCursor.fetchall()
 
 	def actualizaLista(self):
+		# Cargo el conenido actualizado de la tabla a la lista "alumnos"
 		miCursor.execute("SELECT * FROM ALUMNOS")
 		self.alumnos = miCursor.fetchall()
 
 	def agregaPersonas(self, nombre, apellido, cedula):
-		miCursor.execute("INSERT INTO ALUMNOS VALUES (NULL, nombre, apellido, cedula)")
-
+		try:
+			miCursor.execute(f"INSERT INTO ALUMNOS VALUES (NULL,?,?,?)", (nombre, apellido, cedula))
+		except:
+			return 0
+		miConexion.commit()
 		self.actualizaLista()
 
 	def eliminaPersonas(self, cedula):
-		miCursor.execute("DELETE FROM ALUMNOS WHERE CEDULA=" + cedula)
-
+		print("DELETE FROM ALUMNOS WHERE CEDULA=" + str(cedula))
+		miCursor.execute(f"DELETE FROM ALUMNOS WHERE CEDULA=" + str(cedula))
+		miConexion.commit()
 		self.actualizaLista()
 
 	def modificaPersonas(self, cedula, campo, nuevoValor):
-		miCursor.execute("UPDATE ALUMNOS SET" + campo + "=" + nuevoValor)
-
+		miCursor.execute(f"UPDATE ALUMNOS SET {campo}=? WHERE CEDULA=?",(nuevoValor,cedula))
+		# miConexion.commit()
 		self.actualizaLista()
 
 	def dameTabla(self):
@@ -54,6 +59,8 @@ class ListaAlumnos:
 
 miNuevaLista = ListaAlumnos()
 
-print(miNuevaLista.alumnos)
+
+print(miNuevaLista.dameTabla())
+
 
 miConexion.close()
