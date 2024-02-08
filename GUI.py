@@ -2,12 +2,24 @@
 from tkinter import *
 from logica import ListaAlumnos
 
+ObjetoLista = ListaAlumnos()
+
 # ---------------- Campo de variables
 
 # ---------------- Campo de funciones
 
 
 def campoDeAgregado():
+
+	def agregameste():
+		nombre = nombreEntry.get()
+		apellido = apellidoEntry.get()
+		cedula = cedulaEntry.get()
+
+		ObjetoLista.agregaPersonas(nombre, apellido, cedula)
+
+		return print(f"Agregado:{nombre} {apellido}, cedula: {cedula}")
+
 	global anchoDePantalla
 	frameAgregado = Frame(raiz)
 	frameAgregado.config(bg="#F3F3F3", height="200", width=anchoDePantalla, pady=5)
@@ -36,8 +48,9 @@ def campoDeAgregado():
 
 	# Boton de enviado de datos
 
-	botonEnviar = Button(frameAgregado, text="Enviar")
+	botonEnviar = Button(frameAgregado, text="Enviar", command=agregameste)
 	botonEnviar.grid(row=4, column=0, ipady=1)
+
 
 def campoDeEliminacion():
 	global anchoDePantalla
