@@ -28,7 +28,7 @@ def campoDeAgregado():
 	frameAgregado.pack()
 
 	labelTitulo = Label(frameAgregado, text="Agregar usuario")
-	labelTitulo.grid(row=0, column=0)
+	labelTitulo.grid(row=0, column=0, columnspan=3)
 
 	# Nombre
 	nombreLabel = Label(frameAgregado, text="Nombre")
@@ -71,7 +71,7 @@ def campoDeEliminacion():
 	frameEliminado.pack()
 
 	labelTitulo = Label(frameEliminado, text="Eliminar usuario")
-	labelTitulo.grid(row=0, column=0)
+	labelTitulo.grid(row=0, column=0, columnspan=3)
 
 	# Cedula
 	cedulaLabel = Label(frameEliminado, text="Cedula")
@@ -85,22 +85,66 @@ def campoDeEliminacion():
 
 def campoDeModificado():
 
+	def modificameste():
+
+		# A modificar
+		cedula = cedulaEntry.get()
+
+		campos = [nombreModifEntry, apellidoModifEntry, cedulaModifEntry]
+
+		nombreDeCampo = ["NOMBRE", "APELLIDO", "CEDULA"]
+
+		i = 0
+
+		for campo in campos:
+			if campo.get() != "":
+				print(campo.get())
+				ObjetoLista.modificaPersonas(cedula, nombreDeCampo[i], campo.get())
+			i += 1
+		frameModificacion.destroy()
+
+		return print(f"Modificado usuarion de cedula: {cedula}")
+
 	global anchoDePantalla
 	frameModificacion = Frame(raiz)
 	frameModificacion.config(bg="#F3F3F3", height="100", width=anchoDePantalla, pady=5)
 	frameModificacion.pack()
 
 	labelTitulo = Label(frameModificacion, text="Modificar Usuario\n")
-	labelTitulo.grid(row=0, column=0)
+	labelTitulo.grid(row=0, column=0, columnspan=3)
 
-	# Cedula
+	# Cedula para el target de modificacion
 	cedulaLabel = Label(frameModificacion, text="Cedula del usuario a modificar")
 	cedulaLabel.grid(row=1, column=0)
 	cedulaEntry = Entry(frameModificacion)
 	cedulaEntry.grid(row=1, column=1)
 
-	botonEnviar = Button(frameModificacion, text="Enviar")
-	botonEnviar.grid(row=4, column=0, ipady=1)
+	# Espacio para datos a ser modificados (Tratar de no agregar mas pantallas)
+
+	labelModificacion = Label(frameModificacion, text="Datos a modificar\n(solo modificar datos pertinentes)\n", justify="center")
+	labelModificacion.grid(row=2, column=0, columnspan=3, pady=10)
+
+	# Nombre a modificar
+	nombreModifLabel = Label(frameModificacion, text="Nombre modificado")
+	nombreModifLabel.grid(row=3, column=0, pady=10)
+	nombreModifEntry = Entry(frameModificacion)
+	nombreModifEntry.grid(row=3, column=1, pady=10)
+
+	# Apellido a modificar
+	apellidoModifLabel = Label(frameModificacion, text="Apellido modificado")
+	apellidoModifLabel.grid(row=4, column=0)
+	apellidoModifEntry = Entry(frameModificacion)
+	apellidoModifEntry.grid(row=4, column=1)
+
+	# Cedula a modificar
+	cedulaModifLabel = Label(frameModificacion, text="Cedula modificada")
+	cedulaModifLabel.grid(row=5, column=0)
+	cedulaModifEntry = Entry(frameModificacion)
+	cedulaModifEntry.grid(row=5, column=1)
+
+	botonEnviar = Button(frameModificacion, text="Enviar", command=modificameste)
+	botonEnviar.grid(row=6, column=0, ipady=1)
+
 
 # ---------------- Campo de diseño
 
