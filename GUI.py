@@ -53,6 +53,14 @@ def campoDeAgregado():
 
 
 def campoDeEliminacion():
+
+	def eliminameste():
+		cedula = cedulaEntry.get()
+
+		ObjetoLista.eliminaPersonas(cedula)
+
+		return print(f"Eliminado usuario con cedula: {cedula}")
+
 	global anchoDePantalla
 	frameEliminado = Frame(raiz)
 	frameEliminado.config(bg="#F3F3F3", height="100", width=anchoDePantalla, pady=5)
@@ -67,7 +75,7 @@ def campoDeEliminacion():
 	cedulaEntry = Entry(frameEliminado)
 	cedulaEntry.grid(row=1, column=1)
 
-	botonEnviar = Button(frameEliminado, text="Enviar")
+	botonEnviar = Button(frameEliminado, text="Enviar", command=eliminameste)
 	botonEnviar.grid(row=2, column=0, ipady=1)
 
 
