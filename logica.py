@@ -2,9 +2,6 @@
 
 import sqlite3
 
-# miConexion = sqlite3.connect("./Databases/listaAlumnos")
-# miCursor = miConexion.cursor()
-
 
 class ListaAlumnos:
 
@@ -90,6 +87,3 @@ class ListaAlumnos:
 	def dameTabla(self):
 		# Me retorna el objeto lista
 		return self.alumnos
-
-
-
