@@ -18,6 +18,8 @@ def campoDeAgregado():
 
 		ObjetoLista.agregaPersonas(nombre, apellido, cedula)
 
+		frameAgregado.destroy()
+
 		return print(f"Agregado:{nombre} {apellido}, cedula: {cedula}")
 
 	global anchoDePantalla
@@ -59,6 +61,8 @@ def campoDeEliminacion():
 
 		ObjetoLista.eliminaPersonas(cedula)
 
+		frameEliminado.destroy()
+
 		return print(f"Eliminado usuario con cedula: {cedula}")
 
 	global anchoDePantalla
@@ -80,6 +84,7 @@ def campoDeEliminacion():
 
 
 def campoDeModificado():
+
 	global anchoDePantalla
 	frameModificacion = Frame(raiz)
 	frameModificacion.config(bg="#F3F3F3", height="100", width=anchoDePantalla, pady=5)
@@ -89,7 +94,7 @@ def campoDeModificado():
 	labelTitulo.grid(row=0, column=0)
 
 	# Cedula
-	cedulaLabel = Label(frameModificacion, text="Cedula")
+	cedulaLabel = Label(frameModificacion, text="Cedula del usuario a modificar")
 	cedulaLabel.grid(row=1, column=0)
 	cedulaEntry = Entry(frameModificacion)
 	cedulaEntry.grid(row=1, column=1)
