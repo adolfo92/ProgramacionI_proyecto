@@ -121,7 +121,10 @@ def campoDeModificado():
 
 	# Espacio para datos a ser modificados (Tratar de no agregar mas pantallas)
 
-	labelModificacion = Label(frameModificacion, text="Datos a modificar\n(solo modificar datos pertinentes)\n", justify="center")
+	labelModificacion = Label(frameModificacion,
+	text="Datos a modificar\n(solo modificar datos pertinentes)\n",
+	justify="center")
+
 	labelModificacion.grid(row=2, column=0, columnspan=3, pady=10)
 
 	# Nombre a modificar
